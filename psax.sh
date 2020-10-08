@@ -35,7 +35,6 @@ TTY () {
        echo $tty
 }
 
-#echo "PID       TTY      STAT       TIME   COMMAND"
 cat /dev/null > .psinfo.ps
 printf "%s %9s %6s %7s %-2s %1s\n" PID TTY STAT TIME COMMAND
 pid_array=($(ls /proc | grep -E '^[0-9]+$'))

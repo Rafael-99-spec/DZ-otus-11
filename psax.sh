@@ -2,8 +2,8 @@
 
 Time () {
 
-      utime=$(cat /proc/$1/stat | awk '{print $13}')
-      ctime=$(cat /proc/$1/stat | awk '{print $14}')
+      utime=$(cat /proc/$1/stat | awk '{print $14}')
+      ctime=$(cat /proc/$1/stat | awk '{print $15}')
       tik=$(getconf CLK_TCK)
       let "times=($utime+$ctime)/100"
       echo $times
@@ -26,9 +26,9 @@ Command () {
 }
 
 TTY () {
-    tty1=$(ls -l /proc/$pid/fd | grep -e "tty\|pts" |  awk '{print $11}' | cut -c 6- | grep -v '\/')
+    tty1=$(ls -l /proc/$pid/fd | grep -e "tty\|pts" |  awk '{print $11}' | cut -c 6-)
     if [[ -n $tty1 ]]; then
-        tty=$(ls -l /proc/$pid/fd | grep -e "tty\|pts" |  awk '{print $11}' | cut -c 6- | grep -v '\/' | head -n 1)
+        tty=$(ls -l /proc/$pid/fd | grep -e "tty\|pts" |  awk '{print $11}' | cut -c 6- | head -n 1)
     else
         tty="?"
     fi
